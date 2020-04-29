@@ -8,6 +8,10 @@ You may already know that OpenCV ships out-of-the-box with pre-trained Haar casc
 
 …but I’m willing to bet that you don’t know about the “hidden” deep learning-based face detector that has been part of OpenCV since OpenCV 3.3.
 
+# Run File by following command
+python detect_faces.py --image rooster.jpg --prototxt deploy.prototxt.txt --model res10_300x300_ssd_iter_140000.caffemodel
+
+
 # Topics Covered
 
 Where this “hidden” deep learning face detector lives in the OpenCV library
