@@ -37,6 +37,7 @@ blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0,
 print("[INFO] computing object detections...")
 net.setInput(blob)
 detections = net.forward()
+# [,frame,no of detections,[classid,class score,conf,x,y,h,w]
 # loop over the detections
 #print(confidence)
 
