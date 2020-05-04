@@ -1,6 +1,5 @@
 # USAGE
-# python detect_faces.py --image rooster.jpg --prototxt deploy.prototxt.txt --model res10_300x300_ssd_iter_140000.caffemodel
-
+# python detect_faces.py --image rooster.jpg 
 # import the necessary packages
 import numpy as np
 import argparse
@@ -10,17 +9,11 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True,
 	help="path to input image")
-ap.add_argument("-p", "--prototxt", required=True,
-	help="path to Caffe 'deploy' prototxt file")
-ap.add_argument("-m", "--model", required=True,
-	help="path to Caffe pre-trained model")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
-	help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 
 # load our serialized model from disk
 print("[INFO] loading model...")
-net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
+net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt', 'res10_300x300_ssd_iter_140000.caffemodel')
 
 # load the input image and construct an input blob for the image
 # by resizing to a fixed 300x300 pixels and then normalizing it
@@ -50,7 +43,7 @@ for i in range(0, detections.shape[2]):
 	# filter out weak detections by ensuring the `confidence` is
 	# greater than the minimum confidence
 
-	if confidence > args["confidence"]:
+	if confidence > 0.5:
 		# compute the (x, y)-coordinates of the bounding box for the
 		# object
 		box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
