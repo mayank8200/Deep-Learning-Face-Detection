@@ -20,8 +20,10 @@ net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt', 'res10_300x300_ssd_iter_14
 image = cv2.imread(args["image"])
 image = cv2.resize(image,(600,500))
 
+#getting height and width of image
 (h, w) = image.shape[:2]
 
+#Creating a blob from image
 blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0,
 	(300, 300), (104.0, 177.0, 123.0))
 
